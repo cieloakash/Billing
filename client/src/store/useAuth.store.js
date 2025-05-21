@@ -2,7 +2,7 @@ import {create} from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 
-const BASE_URL = "https://billing-rp6k.onrender.com";
+const BASE_URL = import.meta.env.VITE_BACKEND_CORS;
 
 export const useAuthStore = create((set) => ({
   authUser: null,
