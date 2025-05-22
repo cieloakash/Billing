@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import "./App.css";
 import AppLayout from "./component/AppLayout.jsx";
 import Login from "./pages/Login.jsx";
@@ -9,11 +13,9 @@ import Homepage from "./pages/Homepage.jsx";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const { checkAuth, authUser, isCheckingAuth } = useAuthStore();
-  const [authenticated , setauthenticated]=useState(false);
+  const { checkAuth,authUser, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
-    console.log("uf")
     checkAuth();
   }, [checkAuth]);
 
@@ -25,19 +27,18 @@ function App() {
     );
   }
 
-
   const routerDom = createBrowserRouter([
     {
       element: <AppLayout />,
-      errorElement: <div>Something went wrong!</div>, 
+      errorElement: <div>Something went wrong!</div>,
       children: [
         {
           path: "/",
-          element: authUser ? <Homepage /> : <Navigate to="/login" />,
+          element:<Homepage/> ,
         },
         {
           path: "/login",
-          element: !authUser ? <Login /> : <Navigate to="/"  />,
+          element: <Login />  ,
         },
         {
           path: "*",

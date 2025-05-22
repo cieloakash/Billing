@@ -29,6 +29,7 @@ export const protectedRoute = (allowedRoles = []) => {
       req.user = {
         id: decode.id.toString(),
         role: userRole,
+        username:decode.username.toUpperCase()
       };
       if (allowedRoles.length > 0) {
         const normalizedRoles = allowedRoles.map((r) => r.toLowerCase());

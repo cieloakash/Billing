@@ -86,7 +86,7 @@ export const login = async (req, res) => {
         message: "Invalid credentials",
       });
     }
-    genToken(user._id,user.role,res);
+    genToken(user._id,user.role,user.username,res);
     return res.status(200).json({
       _id: user._id,
       username: user.username,
@@ -111,11 +111,14 @@ export const logout= async(req,res)=>{
 }
 export const checkAuth = (req, res) => {
   try {
+    console.log("req.user",req.user);
+    
     res.status(200).json({
       success: true,
       user: {
         id: req.user.id,
-        role: req.user.role
+        role: req.user.role,
+        username:req.user.username
       }
     });
   } catch (error) {
